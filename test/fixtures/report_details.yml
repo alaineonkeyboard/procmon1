@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  report_id: 
+  process_id: MyString
+  process_group_id: MyString
+  process_name: MyString
+  process_user: MyString
+  cpu_consumption: MyString
+  mem_consumption: MyString
+
+two:
+  report_id: 
+  process_id: MyString
+  process_group_id: MyString
+  process_name: MyString
+  process_user: MyString
+  cpu_consumption: MyString
+  mem_consumption: MyString

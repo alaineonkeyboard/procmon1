@@ -1,4 +1,11 @@
 Processmonitor::Application.routes.draw do
+  get "reports/show"
+  get "report_details/index"
+  get "report_details/create"
+  get "report_details/destroy"
+  get "reports/index"
+  get "reports/create"
+  get "reports/destroy"
   get "dashboard/index"
   get "dashboard/kill"
   # The priority is based upon order of creation: first created -> highest priority.

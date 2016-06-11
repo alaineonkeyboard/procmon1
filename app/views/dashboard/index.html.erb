@@ -1,0 +1,28 @@
+<h1>Process Monitor</h1>
+
+<% if notice %>
+<p><%= notice %></p>
+<% end %>
+
+
+	<div class="row">
+		<div class="col-sm-2">PROCESS ID</div>
+		<div class="col-sm-2">PROCESS GROUP ID</div>
+		<div class="col-sm-2">PROCESS NAME</div>
+		<div class="col-sm-2">PROCESS OWNER</div>
+		<div class="col-sm-1">CPU USAGE</div>
+		<div class="col-sm-1">MEM USAGE</div>
+		<div class="col-sm-2">ACTION</div>
+	</div>
+	<% @processes.each do |process| %>
+	<div class="row">
+		<div class="col-sm-2"><%= process[:pid] %></div>
+		<div class="col-sm-2"><%= process[:gid] %></div>
+		<div class="col-sm-2"><%= process[:name] %></div>
+		<div class="col-sm-2"><%= process[:user] %></div>
+		<div class="col-sm-1"><%= process[:cpu] %></div>
+		<div class="col-sm-1"><%= process[:mem] %></div>
+		<div class="col-sm-2"><%= link_to 'Kill', dashboard_kill_path(pid: process[:pid]) %></div>
+	</div>
+	<% end %>
+

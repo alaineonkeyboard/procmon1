@@ -1,25 +1,28 @@
 <h1>Reports</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @reports.each do |report| %>
-      <tr>
-      	<td><%= report.report_date %></td>
-      	<td><%= report.report_user %></td>
-        <td><%= report.description %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<% if notice %>
+<p><%= notice %></p>
+<% end %>
 
-<br>
+<div class="row">
+  <div class="col-sm-3">Report Date</div>
+  <div class="col-sm-3">Created By</div>
+  <div class="col-sm-3">Description</div>
+  <div class="col-sm-3">Action</div>
+</div>
+    
+<% @reports.each do |report| %>
+
+<div class="row">
+  	<div class="col-sm-3"><%= report.report_date %></div>
+  	<div class="col-sm-3"><%= report.report_user %></div>
+    <div class="col-sm-3"><%= report.description %></div>
+    <div class="col-sm-3">
+        <%= link_to 'View Details', report_details_index_path %>
+        <%= link_to 'Delete Report', reports_destroy_path %>
+    </div>
+</div>
+<% end %>
 
 <%= link_to 'Generate New Report', reports_create_path %>

@@ -7,14 +7,15 @@ Processmonitor::Application.routes.draw do
 
   get "sessions/create"
   get "sessions/destroy"
-  resources :users
+  #resources :users
 
   get "reports/show"
-  get "report_details/index"
+  get "report_details/show"
   get "report_details/create"
   get "report_details/destroy"
   get "reports/index"
   get "reports/create"
+  post "reports/create"
   get "reports/destroy"
   get "dashboard/index"
   get "dashboard/kill"

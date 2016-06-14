@@ -4,25 +4,36 @@
 <p><%= notice %></p>
 <% end %>
 
+<table class="table table-striped pretty">
+	<thead>
+		<tr>
+			<th><%= sortable "pid", "Process ID" %></th>
+			<th><%= sortable "gid", "Process Group ID" %></th>
+			<th><%= sortable "comm", "Process Name" %></th>
+			<th><%= sortable "user", "Process Owner" %></th>
+			<th><%= sortable "pcpu", "CPU Usage" %></th>
+			<th><%= sortable "pmem", "Memory Usage" %></th>
+			<th>Action</th>
+		</tr>
+	</thead>
 
-	<div class="row">
-		<div class="col-sm-2">PROCESS ID</div>
-		<div class="col-sm-2">PROCESS GROUP ID</div>
-		<div class="col-sm-2">PROCESS NAME</div>
-		<div class="col-sm-2">PROCESS OWNER</div>
-		<div class="col-sm-1">CPU USAGE</div>
-		<div class="col-sm-1">MEM USAGE</div>
-		<div class="col-sm-2">ACTION</div>
-	</div>
+	<tbody>
+
 	<% @processes.each do |process| %>
-	<div class="row">
-		<div class="col-sm-2"><%= process[:pid] %></div>
-		<div class="col-sm-2"><%= process[:gid] %></div>
-		<div class="col-sm-2"><%= process[:name] %></div>
-		<div class="col-sm-2"><%= process[:user] %></div>
-		<div class="col-sm-1"><%= process[:cpu] %></div>
-		<div class="col-sm-1"><%= process[:mem] %></div>
-		<div class="col-sm-2"><%= link_to 'Kill', dashboard_kill_path(pid: process[:pid]) %></div>
-	</div>
+	<tr>
+		<td><%= process[:pid] %></td>
+		<td><%= process[:gid] %></td>
+		<td><%= process[:name] %></td>
+		<td><%= process[:user] %></td>
+		<td><%= process[:cpu] %></td>
+		<td><%= process[:mem] %></td>
+		<td>
+			<%= link_to 'Show Details' %> | 
+			<%= link_to 'Kill', dashboard_kill_path(pid: process[:pid]) %>
+		</td>
+	</tr>
+	
 	<% end %>
 
+	</tbody>
+</table>

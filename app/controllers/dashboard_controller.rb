@@ -1,6 +1,8 @@
 class DashboardController < ApplicationController
+helper_method :sort_column, :sort_direction
+
   def index
-  	@processes = get_processes
+  	@processes = LinuxProcess.order(sort_column, sort_direction)
   end
 
   def kill
@@ -15,8 +17,14 @@ class DashboardController < ApplicationController
   end
 
   private
-  def get_processes
-  	LinuxProcess.all
+
+  def sort_column
+    params[:sort] ? params[:sort] : "pid"
   end
+
+  def sort_direction
+    params[:direction] ? params[:direction] : "asc"
+  end
+
 
 end

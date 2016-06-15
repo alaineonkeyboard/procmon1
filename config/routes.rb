@@ -9,21 +9,22 @@ Processmonitor::Application.routes.draw do
   get "sessions/destroy"
   #resources :users
 
-  get "reports/show"
   get "report_details/show"
   get "report_details/create"
   get "report_details/destroy"
   get "reports/index"
+  get "reports/download"
   get "reports/create"
   post "reports/create"
   get "reports/destroy"
   get "dashboard/index"
+  post "dashboard/index"
   get "dashboard/kill"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'dashboard#index', as: 'dashboard'
+  #root 'dashboard#index', as: 'dashboard'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -6,6 +6,16 @@ class ReportsController < ApplicationController
   	@reports = Report.all
   end
 
+  def download
+    @report_details = Report.find(params[:report_id]).report_details
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @report_details.to_csv }
+    end
+  end
+
+
   def create
   	ps = `ps -eo pid,pgid,comm,user:20,pcpu,pmem`
 

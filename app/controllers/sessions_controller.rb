@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
   	if user and user.authenticate(params[:password])
   		session[:user_id] = user.id
       session[:user_name] = user.name
-  		redirect_to dashboard_url
+  		redirect_to dashboard_index_path
   	else
   		redirect_to login_url, alert: "Invalid user/password combination"
   	end

@@ -19,8 +19,9 @@
   	<div class="col-sm-3"><%= report.report_user %></div>
     <div class="col-sm-3"><%= report.description %></div>
     <div class="col-sm-3">
-        <%= link_to 'View Details', report_details_index_path %>
+        <%= link_to 'View Details', report_details_show_path %>
         <%= link_to 'Delete Report', reports_destroy_path %>
+        <%= link_to 'CSV', reports_download_path(format: "csv", report_id: report) %>
     </div>
 </div>
 <% end %>

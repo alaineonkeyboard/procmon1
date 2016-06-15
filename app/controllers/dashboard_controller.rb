@@ -2,8 +2,14 @@ class DashboardController < ApplicationController
 helper_method :sort_column, :sort_direction
 
   def index
-  	@processes = LinuxProcess.order(sort_column, sort_direction)
+
+    if filter = params[:filter]
+      @processes = LinuxProcess.filter(filter)
+    else
+      @processes = LinuxProcess.order(sort_column, sort_direction)
+    end
   end
+
 
   def kill
   	pid = params[:pid]

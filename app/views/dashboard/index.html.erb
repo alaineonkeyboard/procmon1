@@ -4,6 +4,19 @@
 <p><%= notice %></p>
 <% end %>
 
+
+<%= form_tag do %>
+<fieldset>
+	<div>
+		<%= label_tag :filter, 'Filter by:' %>
+		<%= text_field_tag :filter, params[:filter] %>
+	</div>
+	<div>
+		<%= submit_tag "Search" %>
+	</div>
+</fieldset>
+<% end %>
+	
 <table class="table table-striped pretty">
 	<thead>
 		<tr>
@@ -28,10 +41,35 @@
 		<td><%= process[:cpu] %></td>
 		<td><%= process[:mem] %></td>
 		<td>
-			<%= link_to 'Show Details' %> | 
+			<a href="#" data-toggle="modal" data-target="#myModal<%= process[:pid] %>">Show Details</a>
 			<%= link_to 'Kill', dashboard_kill_path(pid: process[:pid]) %>
 		</td>
 	</tr>
+
+	<!-- Modal -->
+		<div id="myModal<%= process[:pid] %>" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Process Details</h4>
+		      </div>
+		      <div class="modal-body">
+		        <p>Process ID: <%= process[:pid] %></p>
+		        <p>Process name: <%= process[:name] %></p>
+		        <p>Process full path: <%= process[:fullname] %></p>
+		        <p>Start time: <%= process[:start] %></p>
+		        <p>Elapsed time since process start: <%= process[:etime] %></p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+
+		  </div>
+		</div>
+	<!-- End Modal -->
 	
 	<% end %>
 

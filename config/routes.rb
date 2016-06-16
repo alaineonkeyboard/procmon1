@@ -19,7 +19,7 @@ Processmonitor::Application.routes.draw do
   get "reports/destroy"
   get "dashboard/index"
   post "dashboard/index"
-  get "dashboard/kill"
+  post "dashboard/kill"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

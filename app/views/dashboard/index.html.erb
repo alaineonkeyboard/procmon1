@@ -8,15 +8,13 @@
 <%= form_tag do %>
 <fieldset>
 	<div>
-		<%= label_tag :filter, 'Filter by:' %>
+		<%= label_tag :filter_label, 'Filter by:' %>
 		<%= text_field_tag :filter, params[:filter] %>
-	</div>
-	<div>
 		<%= submit_tag "Search" %>
 	</div>
 </fieldset>
 <% end %>
-	
+
 <table class="table table-striped pretty">
 	<thead>
 		<tr>
@@ -41,8 +39,10 @@
 		<td><%= process[:cpu] %></td>
 		<td><%= process[:mem] %></td>
 		<td>
-			<a href="#" data-toggle="modal" data-target="#myModal<%= process[:pid] %>">Show Details</a>
-			<%= link_to 'Kill', dashboard_kill_path(pid: process[:pid]) %>
+			<!--button><a href="#" data-toggle="modal" data-target="#myModal<%= process[:pid] %>">Details</a></button-->
+			<button style="display: inline;" data-toggle="modal" data-target="#myModal<%= process[:pid] %>">Details</button>
+			<%= button_to 'Kill', dashboard_kill_path(pid: process[:pid]), data: { confirm: 'Are you sure?' },
+				form: {style: 'display:inline-block;'} %>
 		</td>
 	</tr>
 

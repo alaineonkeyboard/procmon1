@@ -1,23 +1,17 @@
 class DashboardController < ApplicationController
-helper_method :sort_column, :sort_direction
+helper_method :sort_column, :sort_direction, :search_filter
 
   def index
-
-    if filter = params[:filter]
-      @processes = LinuxProcess.filter(filter)
-    else
-      @processes = LinuxProcess.order(sort_column, sort_direction)
-    end
+    @processes = Dashboard.get_processes(sort_column, sort_direction, search_filter)
   end
 
 
   def kill
   	pid = params[:pid]
-  	LinuxProcess.kill(pid)
-  	@processes = get_processes
+  	Dashboard.kill(pid)
 
   	respond_to do |format|
-  		format.html { redirect_to '', 
+  		format.html { redirect_to dashboard_index_path, 
   			notice: "Process ID #{pid} was successfully killed." }
   	end
   end
@@ -30,6 +24,14 @@ helper_method :sort_column, :sort_direction
 
   def sort_direction
     params[:direction] ? params[:direction] : "asc"
+  end
+
+  def search_filter
+    if params[:filter] && params[:filter].chomp == ""
+      return nil
+    end
+
+    return params[:filter]
   end
 
 

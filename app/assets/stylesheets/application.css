@@ -17,10 +17,14 @@
   background-position: right center;
 }
 
+.sortified th .nosort {
+  background-image: url('nosort.png');
+}
+
 .sortified th .asc {
-  background-image: url('../images/asc.png');
+  background-image: url('asc.png');
 }
 
 .sortified th .desc {
-  background-image: url('../images/desc.gif');
+  background-image: url('desc.png');
 }

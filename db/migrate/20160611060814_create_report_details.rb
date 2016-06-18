@@ -8,7 +8,9 @@ class CreateReportDetails < ActiveRecord::Migration
       t.string :process_user
       t.string :cpu_consumption
       t.string :mem_consumption
-
+      t.string :full_command
+      t.string :start_time
+      t.string :elapsed_time
       t.timestamps
     end
   end

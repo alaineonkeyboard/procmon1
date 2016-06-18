@@ -1,15 +1,16 @@
 class Dashboard
 
-	def self.get_processes(sort_column=nil, sort_direction=nil, filter=nil)
+	def self.get_processes(sort_column=nil, sort_direction=nil, filter_column=nil, filter=nil)
 		sort_column ||= "pid" # default sort column
 		direction = sort_direction == "desc" ? "-" : "+" # default to ascending
+		filter_column ||= nil
 		filter ||= nil
 		
 		sort_condition = "--sort=#{direction}#{sort_column} "
-		filter_condition = filter ? "| grep #{filter}" : nil
+		#filter_condition = filter ? "| grep #{filter}" : nil
 	
-		ps_command = "ps -eo pid,pgid,comm,user:20,pcpu,pmem,args,start,etime --no-headers "
-		conditions = sort_condition.to_s + filter_condition.to_s
+		ps_command = "ps -eo pid,pgid,comm,user:20,pcpu,pmem,args:100,start,etime --no-headers "
+		conditions = sort_condition.to_s #+ filter_condition.to_s
 		ps_command += conditions
 
 		process_lines = `#{ps_command}`.split("\n") # array of each process line item
@@ -32,9 +33,35 @@ class Dashboard
 
 		end # do
 
+		if filter_column && filter # only filter if a value is provided
+
+			filtered_hash = Array.new
+
+			# if filter column is pid, pgid or user, get exact match of values
+			if %w(pid gid user).include? filter_column
+				process_hash.each do |item|
+					if item[filter_column.to_sym] == filter # add to new hash if exact match of values
+						filtered_hash << item
+					end
+				end
+			elsif filter_column == "name"
+				process_hash.each do |item|
+					# add to new hash if value matches process name pattern
+					if item[filter_column.to_sym] =~ /#{filter}/
+						filtered_hash << item
+					end
+				end
+			end
+
+			return filtered_hash
+
+		end
 		return process_hash
 
 	end
+
+
+
 
 	def self.kill(pid)
 		`kill #{pid}`

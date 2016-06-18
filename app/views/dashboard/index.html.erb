@@ -9,21 +9,22 @@
 <fieldset>
 	<div>
 		<%= label_tag :filter_label, 'Filter by:' %>
+		<%= select_options %>
 		<%= text_field_tag :filter, params[:filter] %>
-		<%= submit_tag "Search" %>
+		<%= submit_tag "Search", method: :get %>
 	</div>
 </fieldset>
 <% end %>
 
-<table class="table table-striped pretty">
+<table class="table table-striped sortified">
 	<thead>
 		<tr>
-			<th><%= sortable "pid", "Process ID" %></th>
-			<th><%= sortable "gid", "Process Group ID" %></th>
-			<th><%= sortable "comm", "Process Name" %></th>
-			<th><%= sortable "user", "Process Owner" %></th>
-			<th><%= sortable "pcpu", "CPU Usage" %></th>
-			<th><%= sortable "pmem", "Memory Usage" %></th>
+			<th><%= sortable "pid", "Process ID " %></th>
+			<th><%= sortable "gid", "Process Group ID " %></th>
+			<th><%= sortable "comm", "Process Name " %></th>
+			<th><%= sortable "user", "Process Owner " %></th>
+			<th><%= sortable "pcpu", "CPU Usage " %></th>
+			<th><%= sortable "pmem", "Memory Usage " %></th>
 			<th>Action</th>
 		</tr>
 	</thead>

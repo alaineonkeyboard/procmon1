@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160612145300) do
+ActiveRecord::Schema.define(version: 20160617051626) do
 
   create_table "report_details", force: true do |t|
     t.integer  "report_id"
@@ -21,11 +21,14 @@ ActiveRecord::Schema.define(version: 20160612145300) do
     t.string   "process_user"
     t.string   "cpu_consumption"
     t.string   "mem_consumption"
+    t.string   "full_command"
+    t.string   "start_time"
+    t.string   "elapsed_time"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "report_details", ["report_id"], name: "index_report_details_on_report_id", using: :btree
+  add_index "report_details", ["report_id"], name: "index_report_details_on_report_id"
 
   create_table "reports", force: true do |t|
     t.datetime "report_date"

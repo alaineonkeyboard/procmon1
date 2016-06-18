@@ -1,11 +1,14 @@
 class DashboardController < ApplicationController
-helper_method :sort_column, :sort_direction, :search_filter
+helper_method :sort_column, :sort_direction, :filter_text, :filter_column
 
+  # GET
   def index
-    @processes = Dashboard.get_processes(sort_column, sort_direction, search_filter)
+
+    @processes = Dashboard.get_processes(sort_column, sort_direction, filter_column, filter_text)
+    
   end
 
-
+  # POST
   def kill
   	pid = params[:pid]
   	Dashboard.kill(pid)
@@ -26,7 +29,11 @@ helper_method :sort_column, :sort_direction, :search_filter
     params[:direction] ? params[:direction] : "asc"
   end
 
-  def search_filter
+  def filter_column
+    params[:filter_column]
+  end
+
+  def filter_text
     if params[:filter] && params[:filter].chomp == ""
       return nil
     end

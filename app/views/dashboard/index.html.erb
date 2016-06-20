@@ -20,8 +20,8 @@
 	<thead>
 		<tr>
 			<th><%= sortable "pid", "Process ID " %></th>
-			<th><%= sortable "gid", "Process Group ID " %></th>
-			<th><%= sortable "comm", "Process Name " %></th>
+			<th><%= sortable "pgid", "Process Group ID " %></th>
+			<th><%= sortable "command", "Process Name " %></th>
 			<th><%= sortable "user", "Process Owner " %></th>
 			<th><%= sortable "pcpu", "CPU Usage " %></th>
 			<th><%= sortable "pmem", "Memory Usage " %></th>
@@ -34,14 +34,14 @@
 	<% @processes.each do |process| %>
 	<tr>
 		<td><%= process[:pid] %></td>
-		<td><%= process[:gid] %></td>
-		<td><%= process[:name] %></td>
+		<td><%= process[:pgid] %></td>
+		<td><%= process[:command] %></td>
 		<td><%= process[:user] %></td>
 		<td><%= process[:cpu] %></td>
 		<td><%= process[:mem] %></td>
 		<td>
 			<!--button><a href="#" data-toggle="modal" data-target="#myModal<%= process[:pid] %>">Details</a></button-->
-			<button style="display: inline;" data-toggle="modal" data-target="#myModal<%= process[:pid] %>">Details</button>
+			<button data-toggle="modal" data-target="#myModal<%= process[:pid] %>">Details</button>
 			<%= button_to 'Kill', dashboard_kill_path(pid: process[:pid]), data: { confirm: 'Are you sure?' },
 				form: {style: 'display:inline-block;'} %>
 		</td>
@@ -58,8 +58,8 @@
 		      </div>
 		      <div class="modal-body">
 		        <p>Process ID: <%= process[:pid] %></p>
-		        <p>Process name: <%= process[:name] %></p>
-		        <p>Process full path: <%= process[:fullname] %></p>
+		        <p>Process name: <%= process[:command] %></p>
+		        <p>Process full path: <%= process[:fullcommand] %></p>
 		        <p>Start time: <%= process[:start] %></p>
 		        <p>Elapsed time since process start: <%= process[:etime] %></p>
 		      </div>

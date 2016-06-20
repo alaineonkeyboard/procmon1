@@ -26,8 +26,10 @@ test:
 production:
   adapter: mysql2
   encoding: utf8
+  reconnect: false
   database: processmonitor_production
   pool: 5
-  username: root
-  password: q1w2e3r4
+  username: <%= ENV['PROCMON_DBUSER'] %>
+  password: <%= ENV['PROCMON_DBPASS'] %>
+  host: localhost
   socket: /var/run/mysqld/mysqld.sock

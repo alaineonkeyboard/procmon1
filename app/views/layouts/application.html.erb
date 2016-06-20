@@ -26,7 +26,7 @@
 
 			<ul class="nav navbar-nav navbar-right">
 	      <li><%= link_to session[:user_name], dashboard_index_path %></li>
-	      <li><%= link_to 'Logout', logout_path, method: :delete %></li>
+	      <li><%= button_to 'Logout', logout_path, method: :post %></li>
     	</ul>
 
     	<% end %>

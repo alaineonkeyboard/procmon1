@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Processmonitor::Application.config.secret_key_base = 'dd0bdec12bfd27b9bdd1c4b92ccc677ff9e36ef683a74105fd547ad1971e1abd3f65cb72cbe7c3314c613ede25f396be5404dd65b4654eb458a1b287250628ab'
+Processmonitor::Application.config.secret_key_base = ENV['SECRET_KEY_BASE']

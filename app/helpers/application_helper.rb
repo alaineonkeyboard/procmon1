@@ -11,8 +11,8 @@ module ApplicationHelper
 
 		options = [
 			{ "text" => "Process ID", "value" => "pid" },
-      { "text" => "Process Group ID", "value" => "gid"},
-      { "text" => "Process Name", "value" => "name"},
+      { "text" => "Process Group ID", "value" => "pgid"},
+      { "text" => "Process Name", "value" => "command"},
       { "text" => "Process Owner", "value" => "user"}
     ]
 

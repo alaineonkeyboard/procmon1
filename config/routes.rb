@@ -4,21 +4,20 @@ Processmonitor::Application.routes.draw do
   controller :sessions do
     get 'login' => :new
     post 'login' => :create
-    delete 'logout' => :destroy
+    post 'logout' => :destroy
   end
 
-  get "sessions/create"
-  get "sessions/destroy"
+  #get "sessions/create"
+  #get "sessions/destroy"
   #resources :users
 
   get "report_details/show"
   get "report_details/create"
   get "report_details/destroy"
   get "reports/index"
-  get "reports/download"
-  get "reports/create"
+  post "reports/download"
   post "reports/create"
-  get "reports/destroy"
+  post "reports/destroy"
   get "dashboard/index"
   post "dashboard/index"
   post "dashboard/kill"

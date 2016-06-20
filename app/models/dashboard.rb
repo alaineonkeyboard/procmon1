@@ -21,12 +21,12 @@ class Dashboard
 
 			process_hash << {
 				pid: line_items[0],
-				gid: line_items[1],
-				name: line_items[2],
+				pgid: line_items[1],
+				command: line_items[2],
 				user: line_items[3],
 				cpu: line_items[4],
 				mem: line_items[5],
-				fullname: line_items[6],
+				fullcommand: line_items[6],
 				start: line_items[7],
 				etime: line_items[8]
 			}
@@ -38,13 +38,13 @@ class Dashboard
 			filtered_hash = Array.new
 
 			# if filter column is pid, pgid or user, get exact match of values
-			if %w(pid gid user).include? filter_column
+			if %w(pid pgid user).include? filter_column
 				process_hash.each do |item|
 					if item[filter_column.to_sym] == filter # add to new hash if exact match of values
 						filtered_hash << item
 					end
 				end
-			elsif filter_column == "name"
+			elsif filter_column == "command"
 				process_hash.each do |item|
 					# add to new hash if value matches process name pattern
 					if item[filter_column.to_sym] =~ /#{filter}/
